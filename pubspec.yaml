@@ -23,7 +23,8 @@ dependencies:
   dio: ^5.5.0+1
   connectivity_plus: ^5.0.1
   path_provider:
-  device_info_plus:
+  screenshot: ^3.0.0
+  
   
 
 dev_dependencies:
