@@ -5,9 +5,11 @@ class Controller extends GetxController {
   final clockTime = Rx<int>(0);
   late Timer timer;
   final isTiming = RxBool(false);
+  final isPause = RxBool(false);
 
   void startClock() {
     isTiming.value = true;
+    isPause.value = false;
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       clockTime.value += 1;
     });
@@ -16,8 +18,8 @@ class Controller extends GetxController {
   Future<void> pauseClock() async {
     timer.cancel();
 
-    // videoDuration.value = 0;
     isTiming.value = false;
+    isPause.value = true;
   }
 
   Future<void> stopClock() async {
@@ -25,6 +27,7 @@ class Controller extends GetxController {
 
     clockTime.value = 0;
     isTiming.value = false;
+    isPause.value = false;
   }
 
   @override
@@ -32,49 +35,4 @@ class Controller extends GetxController {
     timer.cancel();
     super.onClose();
   }
-
-  // final interval = 5.obs; // default interval is 5 seconds
-  // ScreenshotController screenshotController = ScreenshotController();
-
-  // void startCapturingScreenshots() {
-  //   if (timer != null) {
-  //     timer!.cancel();
-  //   }
-  //   timer = Timer.periodic(Duration(seconds: interval.value), (timer) {
-  //     captureScreenshot();
-  //   });
-  // }
-
-  // void captureScreenshot() async {
-  //   final screenshot = await screenshotController.capture();
-  //   if (screenshot != null) {
-  //     // Save or process the screenshot as needed
-  //     kLog("Screenshot captured");
-  //   }
-  // }
-
-  // var time = '00:00:00'.obs;
-  // Timer? _timer;
-  // int _seconds = 0;
-
-  // void startTimer() {
-  //   _timer?.cancel(); // Cancel any existing timer
-  //   _seconds = 0; // Reset the seconds counter
-  //   _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-  //     _seconds++;
-  //     time.value = _formatTime(_seconds);
-  //   });
-  // }
-
-  // void stopTimer() {
-  //   _timer?.cancel();
-  //   _timer = null; // Set to null after canceling
-  // }
-
-  // String _formatTime(int seconds) {
-  //   final int hours = seconds ~/ 3600;
-  //   final int minutes = (seconds % 3600) ~/ 60;
-  //   final int secs = seconds % 60;
-  //   return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${secs.toString().padLeft(2, '0')}';
-  // }
 }

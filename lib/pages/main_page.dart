@@ -35,7 +35,7 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
               onPressed: () {
-                Get.to(const AdminPage());
+                Get.to(() => const AdminPage());
               },
               child: const Text(
                 'Admin',
@@ -57,7 +57,7 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
               onPressed: () {
-                Get.to(const UserPage());
+                Get.to(() => const UserPage());
               },
               child: const Text(
                 'User',
