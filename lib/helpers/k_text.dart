@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class KText extends StatelessWidget {
   final String? text;
   final Color? color;
@@ -25,16 +26,16 @@ class KText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       '$text',
-      textScaler: TextScaler.linear(1.0),
+      textScaler: const TextScaler.linear(1.0),
       style: TextStyle(
         decoration: TextDecoration.none,
         fontSize: fontSize != null ? fontSize! : 14,
         fontFamily: bold! ? 'Manrope Bold' : 'Manrope Regular',
-        color: color != null ? color : Colors.black,
+        color: color ?? Colors.black,
       ),
       maxLines: maxLines,
       overflow: textOverflow,
-      textAlign: textAlign != null ? textAlign : TextAlign.start,
+      textAlign: textAlign ?? TextAlign.start,
     );
   }
 }

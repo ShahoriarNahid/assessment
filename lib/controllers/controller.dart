@@ -1,7 +1,5 @@
 import 'dart:async';
-import 'package:assessment/helpers/k_log.dart';
 import 'package:get/get.dart';
-import 'package:screenshot/screenshot.dart';
 
 class Controller extends GetxController {
   final clockTime = Rx<int>(0);
@@ -10,7 +8,7 @@ class Controller extends GetxController {
 
   void startClock() {
     isTiming.value = true;
-    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       clockTime.value += 1;
     });
   }
