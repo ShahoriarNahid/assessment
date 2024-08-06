@@ -1,6 +1,7 @@
 import 'package:assessment/helpers/k_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:photo_view/photo_view.dart';
 import '../base/base.dart';
 
 class AdminPage extends StatefulWidget {
@@ -59,10 +60,34 @@ class _AdminPageState extends State<AdminPage> {
                 itemCount: Base.screenCaptureController.screenshots.length,
                 itemBuilder: (context, index) {
                   return GridTile(
-                    child: Container(
-                      color: Colors.white,
-                      child: Center(
-                        child: Image.memory(Base.screenCaptureController.screenshots[index]),
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.to(
+                          () => GestureDetector(
+                            onTap: () => Get.back(),
+                            child: Container(
+                              width: Get.width,
+                              // ignore: sort_child_properties_last
+                              child: PhotoView(
+                                // minScale: .8,
+                                imageProvider: MemoryImage(
+                                  Base.screenCaptureController.screenshots[index],
+                                ),
+                              ),
+                              decoration: const BoxDecoration(
+                                color: Colors.white70,
+                              ),
+                            ),
+                          ),
+                          fullscreenDialog: true,
+                          opaque: false,
+                        );
+                      },
+                      child: Container(
+                        color: Colors.white,
+                        child: Center(
+                          child: Image.memory(Base.screenCaptureController.screenshots[index]),
+                        ),
                       ),
                     ),
                   );

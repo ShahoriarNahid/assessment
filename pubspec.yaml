@@ -22,6 +22,7 @@ dependencies:
   get:
   path_provider:
   screenshot: ^3.0.0
+  photo_view:
   
   
 
